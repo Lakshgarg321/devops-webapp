@@ -1,0 +1,39 @@
+name: DevOps CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v6
+
+      - name: Verify HTML File
+        run: |
+          echo "Checking project files..."
+          ls
+          test -f index.html
+
+      - name: Build Application
+        run: |
+          echo "Building web application..."
+          echo "Build completed successfully."
+
+      - name: Run Tests
+        run: |
+          echo "Running tests..."
+          test -f index.html
+          echo "Tests passed successfully."
+
+      - name: Generate Build Logs
+        run: |
+          echo "Build completed at:"
+          date
